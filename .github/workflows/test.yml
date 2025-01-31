@@ -55,8 +55,9 @@ jobs:
             export NVM_DIR="$HOME/.nvm"; 
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             # Register the npm package locally
+            echo "Npm version: $(npm -v)"
+            echo "Node version: $(node -v)"
             npm link
-            ls -ahl
             npx @wuchuheng/nextjs my-app
           '
       - name: Check the dependencies is installed or not, if not, exit code 127.
