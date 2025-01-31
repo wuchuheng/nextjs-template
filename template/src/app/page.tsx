@@ -1,5 +1,5 @@
-import Button from '@/components/ui/Button';
 import '@/app/global.css';
+import Button from '@/components/ui/Button';
 
 export default function Home() {
   return (
