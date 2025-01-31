@@ -17,8 +17,17 @@ if (process.argv.length < 3) {
 
 async function main() {
   try {
+    // 2. Handling logic.
+    // 2.1 Copy project files.
     console.log("Copying project files...");
     await copyDir(path.join(__dirname, "../template"), projectDir);
+
+    execSync(`ls -ahl ${projectDir}`, { stdio: "inherit" });
+
+    execSync(`ls -ahl ${projectDir}/template`, { stdio: "inherit" });
+
+    // 2.1.1 List of the files in the project directory.
+    execSync(`cd ${projectDir} && pwd && ls -ahl`, { stdio: "inherit" });
 
     console.log("Installing dependencies...");
 
