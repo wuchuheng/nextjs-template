@@ -54,6 +54,7 @@ jobs:
         run: |
           docker exec ${CONTAINER_NAME} bash -c '
             ls -ahl
+            ls -ahl template
             pwd
             export NVM_DIR="$HOME/.nvm"; 
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
