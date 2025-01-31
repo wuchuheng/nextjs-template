@@ -6,6 +6,9 @@
     "type": "git",
     "url": "https://github.com/wuchuheng/nextjs-template"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "bin": {
     "@wuchuheng/nextjs": "./bin/cli.js"
   },
