@@ -4,5 +4,5 @@ dist
 .git
 .github
 .gitignore
-template/.next/
 !template/.vscode/
+template/.next/

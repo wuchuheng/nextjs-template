@@ -24,11 +24,6 @@ async function main() {
 
     execSync(`ls -ahl ${projectDir}`, { stdio: "inherit" });
 
-    execSync(`ls -ahl ${projectDir}/template`, { stdio: "inherit" });
-
-    // 2.1.1 List of the files in the project directory.
-    execSync(`cd ${projectDir} && pwd && ls -ahl`, { stdio: "inherit" });
-
     console.log("Installing dependencies...");
 
     installAndBuild(projectDir);
@@ -91,11 +86,9 @@ function installAndBuild(projectDir) {
   // 2. Handling logic.
   // 2.1 Install dependencies.
   console.log("Installing dependencies...");
+
   execSync(`cd ${projectDir} && pnpm install`, { stdio: "inherit" });
 
-  execSync(`cd ${projectDir} && pwd && ls -ahl`, { stdio: "inherit" });
-
-  // 2.2 Build the project.
   console.log("Building the project...");
   execSync(`cd ${projectDir} && pnpm build`, { stdio: "inherit" });
 
