@@ -53,9 +53,6 @@ jobs:
       - name: Test the cli
         run: |
           docker exec ${CONTAINER_NAME} bash -c '
-            ls -ahl
-            ls -ahl template
-            pwd
             export NVM_DIR="$HOME/.nvm"; 
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             # Register the npm package locally
@@ -63,41 +60,42 @@ jobs:
             echo "Node version: $(node -v)"
             npm link
             npx @wuchuheng/nextjs my-app
+            ls -ahl my-app
           '
-      # - name: Check the dependencies is installed or not, if not, exit code 127.
-      #   run: |
-      #     docker exec ${CONTAINER_NAME} bash -c '
-      #       export NVM_DIR="$HOME/.nvm";
-      #       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-      #       ls -ahl
-      #       cd my-app
-      #       ls -ahl
+      - name: Check the dependencies is installed or not, if not, exit code 127.
+        run: |
+          docker exec ${CONTAINER_NAME} bash -c '
+            export NVM_DIR="$HOME/.nvm";
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            ls -ahl
+            cd my-app
+            ls -ahl
 
-      #       # Check the dependencies is installed or not,
-      #       if [ ! -d node_modules ]; then
-      #         echo "Error: The dependencies is not installed."
-      #         exit 127
-      #       fi
-      #     '
+            # Check the dependencies is installed or not,
+            if [ ! -d node_modules ]; then
+              echo "Error: The dependencies is not installed."
+              exit 127
+            fi
+          '
 
-      # - name: Check the programm can be executed or not. if not, exit code 127.
-      #   run: |
-      #     docker exec ${CONTAINER_NAME} bash -c '
-      #       export NVM_DIR="$HOME/.nvm";
-      #       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-      #       cd my-app
+      - name: Check the programm can be executed or not. if not, exit code 127.
+        run: |
+          docker exec ${CONTAINER_NAME} bash -c '
+            export NVM_DIR="$HOME/.nvm";
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            cd my-app
 
-      #       # Start the program in the background and capture its PID
-      #       pnpm run dev & APP_PID=$!
+            # Start the program in the background and capture its PID
+            pnpm run dev & APP_PID=$!
 
-      #       # Wait for 10 seconds
-      #       sleep 10
+            # Wait for 10 seconds
+            sleep 10
 
-      #       # Check if the process is still running
-      #       if ps -p $APP_PID > /dev/null; then
-      #         kill -9 $APP_PID
-      #       else
-      #         echo "Error: The program has already exited unexpectedly."
-      #         exit 127
-      #       fi
-      #     '
+            # Check if the process is still running
+            if ps -p $APP_PID > /dev/null; then
+              kill -9 $APP_PID
+            else
+              echo "Error: The program has already exited unexpectedly."
+              exit 127
+            fi
+          '
