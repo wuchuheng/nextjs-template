@@ -1,8 +1,8 @@
 <h1 align="center">nextjs-template</h1>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@wuchuheng//nextjs-template"><img src="https://img.shields.io/npm/v/@wuchuheng//nextjs-template.svg" alt="npm version"></a>
-  <a href="https://github.com/wuchuheng//nextjs-template"><img src="https://img.shields.io/github/license/wuchuheng//nextjs-template.svg" alt="license"></a>
+  <a href="https://www.npmjs.com/package/@wuchuheng/nextjs"><img src="https://img.shields.io/npm/v/@wuchuheng/nextjs.svg" alt="npm version"></a>
+  <a href="https://github.com/wuchuheng/nextjs"><img src="https://img.shields.io/github/license/wuchuheng/nextjs.svg" alt="license"></a>
 </p>
 
 ## 🚀 About
