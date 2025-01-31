@@ -15,10 +15,10 @@ jobs:
       WORKSPACE_DIR: "/workspace"
 
     steps:
-      - name: Checkout the code
+      - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Run the container
+      - name: Run Container
         run: |
           echo "pwd: $(pwd)"
           ls -ahl
@@ -27,12 +27,12 @@ jobs:
               apt-get update
               apt-get install -y curl git  # Add any other packages you need
             "
-      - name: Install nvm.
+      - name: Install NVM
         run: |
           docker exec ${CONTAINER_NAME} bash -c "
             curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
           "
-      - name: Install Node.
+      - name: Install Node.js
         run: |
           docker exec ${CONTAINER_NAME} bash -c '
             export NVM_DIR="$HOME/.nvm"; 
@@ -42,7 +42,7 @@ jobs:
             nvm use 20.17.0
             node -v
           '
-      - name: Install pnpm
+      - name: Install PNPM
         run: |
           docker exec ${CONTAINER_NAME} bash -c '
             export NVM_DIR="$HOME/.nvm"; 
@@ -50,7 +50,7 @@ jobs:
             npm install -g pnpm
             pnpm -v
           '
-      - name: Test the cli
+      - name: Test CLI
         run: |
           docker exec ${CONTAINER_NAME} bash -c '
             export NVM_DIR="$HOME/.nvm"; 
@@ -62,7 +62,7 @@ jobs:
             npx @wuchuheng/nextjs my-app
             ls -ahl my-app
           '
-      - name: Check the dependencies is installed or not, if not, exit code 127.
+      - name: Check Dependencies
         run: |
           docker exec ${CONTAINER_NAME} bash -c '
             export NVM_DIR="$HOME/.nvm";
@@ -78,7 +78,7 @@ jobs:
             fi
           '
 
-      - name: Check the programm can be executed or not. if not, exit code 127.
+      - name: Check Program Execution
         run: |
           docker exec ${CONTAINER_NAME} bash -c '
             export NVM_DIR="$HOME/.nvm";
