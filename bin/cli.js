@@ -21,7 +21,8 @@ async function main() {
     await copyDir(path.join(__dirname, "../template"), projectDir);
 
     console.log("Installing dependencies...");
-    execSync(`cd ${projectDir} && pnpm install && pnpm run build`);
+
+    installAndBuild(projectDir);
 
     console.log("The installation is done!");
     console.log(`Done. Now run:`);
@@ -69,6 +70,26 @@ function copyDir(src, dest) {
       });
     });
   });
+}
+
+function installAndBuild(projectDir) {
+  // 1. Handle input.
+  // 1.1 Validate project directory.
+  if (!projectDir) {
+    throw new Error("Project directory is required.");
+  }
+
+  // 2. Handling logic.
+  // 2.1 Install dependencies.
+  console.log("Installing dependencies...");
+  execSync(`cd ${projectDir} && pnpm install`, { stdio: "inherit" });
+
+  // 2.2 Build the project.
+  console.log("Building the project...");
+  execSync(`cd ${projectDir} && pnpm build`, { stdio: "inherit" });
+
+  // 3. Return result.
+  console.log("Project built successfully.");
 }
 
 main();
