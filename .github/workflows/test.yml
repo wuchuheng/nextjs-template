@@ -64,7 +64,7 @@ jobs:
             npm link
             npx @wuchuheng/nextjs my-app
           '
-      - name: Check the dependencies is installed or not, if not, exit code 127.
+      # - name: Check the dependencies is installed or not, if not, exit code 127.
       #   run: |
       #     docker exec ${CONTAINER_NAME} bash -c '
       #       export NVM_DIR="$HOME/.nvm";
