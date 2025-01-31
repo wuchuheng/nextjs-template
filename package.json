@@ -1,0 +1,21 @@
+{
+  "name": "@wuchuheng/nextjs",
+  "version": "1.0.0",
+  "description": "Nestjs template",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wuchuheng/nextjs-template"
+  },
+  "bin": {
+    "@wuchuheng/nextjs": "./bin/cli.js"
+  },
+  "keywords": [
+    "nextjs",
+    "typescript",
+    "template",
+    "cli",
+    "next"
+  ],
+  "author": "wuchuheng",
+  "license": "MIT"
+}
