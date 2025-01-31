@@ -84,6 +84,8 @@ function installAndBuild(projectDir) {
   console.log("Installing dependencies...");
   execSync(`cd ${projectDir} && pnpm install`, { stdio: "inherit" });
 
+  execSync(`cd ${projectDir} && pwd && ls -ahl`, { stdio: "inherit" });
+
   // 2.2 Build the project.
   console.log("Building the project...");
   execSync(`cd ${projectDir} && pnpm build`, { stdio: "inherit" });
