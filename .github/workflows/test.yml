@@ -56,7 +56,7 @@ jobs:
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             # Register the npm package locally
             npm link
-            echo y | npx @wuchuheng/nextjs my-app
+            npx @wuchuheng/nextjs my-app
           '
       - name: Check the dependencies is installed or not, if not, exit code 127.
         run: |
