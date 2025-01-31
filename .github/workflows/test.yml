@@ -16,12 +16,11 @@ jobs:
 
     steps:
       - name: Checkout the code
-        run: |
-          git clone https://github.com/wuchuheng/nextjs-template.git
+        uses: actions/checkout@v3
 
       - name: Run the container
         run: |
-          docker run -itd --name ${CONTAINER_NAME} -v $(pwd)/nextjs-template:/workspace -w /workspace ubuntu:22.04
+          docker run -itd --name ${CONTAINER_NAME} -v $(pwd):/workspace -w /workspace ubuntu:22.04
             docker exec ${CONTAINER_NAME} bash -c "
               apt-get update
               apt-get install -y curl git  # Add any other packages you need
