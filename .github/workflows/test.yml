@@ -15,9 +15,13 @@ jobs:
       WORKSPACE_DIR: "/workspace"
 
     steps:
+      - name: Checkout the code
+        run: |
+          git clone https://github.com/wuchuheng/nextjs-template.git
+
       - name: Run the container
         run: |
-          docker run -itd --name ${CONTAINER_NAME} ubuntu:22.04
+          docker run -itd --name ${CONTAINER_NAME} -v $(pwd)/nextjs-template:/workspace -w /workspace ubuntu:22.04
             docker exec ${CONTAINER_NAME} bash -c "
               apt-get update
               apt-get install -y curl git  # Add any other packages you need
@@ -30,7 +34,6 @@ jobs:
       - name: Install Node.
         run: |
           docker exec ${CONTAINER_NAME} bash -c '
-            echo hello
             export NVM_DIR="$HOME/.nvm"; 
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             nvm install 20.17.0
@@ -51,6 +54,8 @@ jobs:
           docker exec ${CONTAINER_NAME} bash -c '
             export NVM_DIR="$HOME/.nvm"; 
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            # Register the npm package locally
+            npm link
             echo y | npx @wuchuheng/nextjs my-app
           '
       - name: Check the dependencies is installed or not, if not, exit code 127.
